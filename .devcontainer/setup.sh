@@ -1,25 +1,13 @@
 #!/bin/bash
-set -e
+set -e  # stop if any command fails
 
-# Update and install MariaDB
-sudo apt-get update
-sudo apt-get install -y mariadb-server
+echo "🔧 Updating apt..."
+sudo apt-get update -y
 
-# Start MariaDB
-sudo service mariadb start
+echo "📦 Installing MariaDB..."
+sudo apt-get install -y mariadb-server mariadb-client
 
-# Create database if it doesn't exist
-sudo mariadb -e "CREATE DATABASE IF NOT EXISTS mydatabase;"
+echo "🐍 Installing Python requirements..."
+pip install --user -r .devcontainer/requirements.txt || echo "⚠️ No requirements.txt found, skipping."
 
-# Install Python dependencies
-pip3 install -r /workspaces/requirements.txt
-
-# Initialize Git repo if not initialized
-if [ ! -d "/workspaces/.git" ]; then
-    cd /workspaces
-    git init
-    git branch -M main
-    echo "Git repository initialized on main branch."
-fi
-
-echo "Setup complete!"
+echo "✅ Setup complete!"
