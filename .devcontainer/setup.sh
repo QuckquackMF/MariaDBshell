@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e  # stop if any command fails
+set -e
 
 echo "🔧 Updating apt..."
 sudo apt-get update -y
