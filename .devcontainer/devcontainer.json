@@ -1,7 +1,7 @@
 {
   "name": "MariaDB Python DevContainer",
   "image": "mcr.microsoft.com/vscode/devcontainers/python:3.10",
-  "postStartCommand": "./.devcontainer/setup.sh",
+  "postCreateCommand": "chmod +x .devcontainer/setup.sh && ./.devcontainer/setup.sh",
   "remoteUser": "vscode",
   "customizations": {
     "vscode": {
