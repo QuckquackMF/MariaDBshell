@@ -1,7 +1,11 @@
 #!/bin/bash
 set -e
 
-# Start MariaDB service
+# Update apt and install MariaDB server
+sudo apt-get update
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
+
+# Start MariaDB
 sudo service mariadb start
 
 # Install Python packages
