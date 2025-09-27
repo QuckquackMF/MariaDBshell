@@ -1,15 +1,11 @@
 {
   "name": "MariaDB Python DevContainer",
   "image": "mcr.microsoft.com/vscode/devcontainers/python:3.10",
-  "features": {
-    "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/mariadb:1": {}
-  },
   "postStartCommand": "./.devcontainer/setup.sh",
   "remoteUser": "vscode",
   "customizations": {
     "vscode": {
-      "extensions": ["ms-python.python","ms-python.vscode-pylance"]
+      "extensions": ["ms-python.python", "ms-python.vscode-pylance"]
     }
   }
 }
