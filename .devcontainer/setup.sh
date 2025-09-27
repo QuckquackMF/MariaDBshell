@@ -1,24 +1,21 @@
 #!/bin/bash
 set -e
 
-# Update apt and install MariaDB server
-sudo apt-get update
-sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server
-
 # Start MariaDB
 sudo service mariadb start
 
-# Install Python packages
-pip3 install --no-warn-script-location -r /workspace/.devcontainer/requirements.txt
+# Create database if it doesn't exist
+sudo mariadb -e "CREATE DATABASE IF NOT EXISTS mydatabase;"
 
-# Initialize Git if not already initialized
-if [ ! -d /workspace/.git ]; then
-    git init /workspace
-    cd /workspace
+# Install Python packages
+pip3 install -r /workspaces/requirements.txt
+
+# Initialize Git repo if not already initialized
+if [ ! -d "/workspaces/.git" ]; then
+    cd /workspaces
+    git init
     git branch -M main
-    echo "Git repository initialized on branch 'main'."
-else
-    echo "Git repository already exists."
+    echo "Git repository initialized on main branch."
 fi
 
-echo "Setup complete. You can now run Python scripts and access MariaDB."
+echo "Setup complete!"
